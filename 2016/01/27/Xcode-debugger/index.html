@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS崩溃处理以及常用调试技巧 | Edison Jiang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。
+目录
+
+常见崩溃
+常见调试技巧
+第三方崩溃收集平台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS崩溃处理以及常用调试技巧">
+<meta property="og:url" content="http://iyhjiang.com/2016/01/27/Xcode-debugger/index.html">
+<meta property="og:site_name" content="Edison Jiang">
+<meta property="og:description" content="我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。
+目录
+
+常见崩溃
+常见调试技巧
+第三方崩溃收集平台">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7b7b8d67gw1f0e40ytja4j207y07emxi.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7b7b8d67gw1f0e44obzvbj20m80ccjun.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e45uqcckj20g606yq4u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7b7b8d67gw1f0e4hib7knj20mc08ctas.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7b7b8d67gw1f0e4ugdpg0j20c204ewf1.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e4x5l4bxj20fw0xcn1b.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e4z6fjjdj20m80duwhb.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e51l4xolj20wx0fzjwo.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e52mdpwgj209e04i0si.jpg">
+<meta property="og:updated_time" content="2016-01-27T09:21:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS崩溃处理以及常用调试技巧">
+<meta name="twitter:description" content="我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。
+目录
+
+常见崩溃
+常见调试技巧
+第三方崩溃收集平台">
+  
+    <link rel="alternative" href="/atom.xml" title="Edison Jiang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3dfc7daa5983b2386f4a52f5b2cdaf9c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://tp4.sinaimg.cn/2071694695/180/40037917528/1" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yinghui Jiang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Believe Yourself</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yhjiang" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/2071694695" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/iyhjiang" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Xcode/" style="font-size: 20px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yinghui Jiang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://tp4.sinaimg.cn/2071694695/180/40037917528/1" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Yinghui Jiang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Believe Yourself</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yhjiang" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/2071694695" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/iyhjiang" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Xcode-debugger" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/27/Xcode-debugger/" class="article-date">
+  	<time datetime="2016-01-27T04:51:34.000Z" itemprop="datePublished">1月 27 2016</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS崩溃处理以及常用调试技巧
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。</p>
+<p>目录</p>
+<ul>
+<li>常见崩溃</li>
+<li>常见调试技巧</li>
+<li>第三方崩溃收集平台</li>
+</ul>
+<a id="more"></a>
+<h2 id="常见崩溃">常见崩溃</h2><ol>
+<li><p>unrecognized selector sent to instance 0x<em>**</em>。</p>
+<p>  原因:这种情况很简单，给一个对象发送了一条它不认识的消息。比如说你的.h中声明了某一个方法，但是.m中却没有实现，而且你没有对异常消息处理（消息转发）就会造成这种现象。</p>
+<p> 解决办法：首先排查自己的某一些方法是否实现，其次看一下哪些对象接收了它不该接收的消息。</p>
+</li>
+<li><p><em>*</em> -[__NSArrayM objectAtIndex:]: index 5 beyond bounds [0 .. 3]’</p>
+<p> 原因： 数据越界，无需多说，这也是我们经常遇到的问题，尤其取服务端返回某个数组的值，没有对数组做判断导致。</p>
+<p> 解决办法: 根据定位查看是代码中哪个类中数组取值有越界。 或者通过iOS swizzle方法，对objectAtIndex或者objectForKey进行一层安全过滤。</p>
+</li>
+<li><p><strong> [NSNull length] or [xxx length] unrecognized selector sent to *</strong> or [__NSCFNumber isEqualToString:]: unrecognized selector sent to instance 0x7a88df0</p>
+<p> 原因: 这个异常以可以归类为第一种，也是给某一个对象发送了不识别的消息。常见原因有：给UILabel对象设置了text，此时的text内容为空字符串null，然后你在取text的length的时候就会抛出异常，或者对一个string取length，但是这个string其实是个NSNumber类型的。</p>
+<p> 解决办法：对代码中进行取值的方法进行安全判断。</p>
+</li>
+<li><p>EXC_BAD_ACCESS</p>
+<p> 原因：这种大多因为对象提前释放，访问了野指针导致的。</p>
+<p> 解决办法： 排查所有声明为weak对象的使用，是否在没有持有的情况下再次访问了该对象（该对象已经被释放），第二在MRC情况下，排查一下所以已经release的对象（声明一点，MRC中全局变量最好在dealloc方法中进行释放），第三排查一下所有block，是否block被正常赋值等。</p>
+</li>
+<li><p>main函数崩溃</p>
+<p>原因：这种情况比较难找，有可能是程序被系统kill掉了，也有可能是代码内线程访问出错等等原因。</p>
+<p>解决办法：添加全局(Exception Breakpoints)异常断点，开启NSZombieEnabled（僵尸模式），这样大部分崩溃都会定位到具体的代码行中。</p>
+</li>
+</ol>
+<h2 id="常见调试技巧">常见调试技巧</h2><ol>
+<li><p>断点调试（Breakpoint）</p>
+<p> <img src="http://ww1.sinaimg.cn/large/7b7b8d67gw1f0e40ytja4j207y07emxi.jpg" alt=""><br> <img src="http://ww2.sinaimg.cn/large/7b7b8d67gw1f0e44obzvbj20m80ccjun.jpg" alt=""></p>
+<p> 这也是我们经常在开发中用到的操作，这些Debug的最基本操作技能是每一个入门的iOS开发者都要掌握的，应该当成一种本能。<br> 这里不再做赘述，每个iOS开发者都应该会。</p>
+</li>
+<li><p>条件断点 (Condational Breakpoints)</p>
+<p> <img src="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e45uqcckj20g606yq4u.jpg" alt=""></p>
+<p> 顾名思义就是让我们在打断点的时候，可以根据条件去执行断点。</p>
+<p> Condition 区域 我们可以输入 某个变量int i == 1,当前条件成立后，才会执行这个断点，当 i != 1就不执行了。</p>
+<p> Ignore 可以设置忽略次数。 比如我们想在for循环遍历在第五次的时候再去执行这个断点，我们在这里设置成4就可以。</p>
+<p>  Action 操作中有几个选项<br>  <img src="http://ww1.sinaimg.cn/large/7b7b8d67gw1f0e4hib7knj20mc08ctas.jpg" alt=""></p>
+<p>  常用的有 Log Message，我们可以输入在控制台要打印的信息在这； 这样避免你在调试的时候想在控制台打印某个信息或者某个变量的值，在代码中添加NSLog然后再重新运行程序执行一遍了，大大节省了时间。</p>
+<p>  Sound，执行到这个断点时候，会有相应的声音提示。可选声音里只有常用的几种系统铃声。</p>
+<p>  Debugger Command 可输入常用的调试命令。</p>
+</li>
+</ol>
+<ol>
+<li><p>异常断点 (Exception Breakpoints)</p>
+<p> <img src="http://ww1.sinaimg.cn/large/7b7b8d67gw1f0e4ugdpg0j20c204ewf1.jpg" alt=""></p>
+<p> 在Debug导航面板点击 Add Exception按钮，你就建立了全局断点，这样只要遇到错误，debug程序就会自动定位到栈底的信息，也就是你最先出错的代码的那一行，这样你就可以进行debug了，而不在因为崩溃到main函数而不知所措了。</p>
+</li>
+<li><p>符号断点（Symbolic Breakpoint）</p>
+<p> <img src="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e4x5l4bxj20fw0xcn1b.jpg" alt=""><br> 添加步骤:<br> <img src="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e4z6fjjdj20m80duwhb.jpg" alt=""></p>
+<p> symbol位置填入viewDidLoad，这样在程序中所有viewDidLoad方法被调用的时候都会触发断点。</p>
+<p> 我们也可以仅仅为特定的某个类的方法添加断点。在 Symbol 一栏输入 [ClassName viewDidLoad] (Objective-C) 或 ClassName.viewDidLoad     (Swift) 即可。</p>
+<p> 比如：unrecognized selector sent to instance 0xaxxxx 这种错误，这个instance可以这样快速定位。</p>
+</li>
+</ol>
+<ol>
+<li><p>开启僵尸对象(Enable NSZombie Objects)</p>
+<p>  Xcode可以把那些已经release掉得对象，变成“僵尸”，当我们访问一个Zombie对象时，Xcode可以告诉我们正在访问的对象是一个不应该存在的对象了。因为Xcode知道这个对象是什么，所以可以让我们知道这个对象在哪里，以及这是什么时候发生的。<br>他可以让你输出的信息更具体！！<br><img src="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e51l4xolj20wx0fzjwo.jpg" alt=""></p>
+<p> 注意：僵尸对象只能用在模拟器和OC语言哦~</p>
+</li>
+<li><p>控制台调试 (Console Debug)</p>
+<p><img src="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e52mdpwgj209e04i0si.jpg" alt=""></p>
+<p>常用的命令</p>
+<p>po (print object)简称，  用于打印Object-C对象。</p>
+<p>p  (print)简称， 用于打印一些非OC对象，比如 int float，long等。</p>
+<p>bt 打印调用的堆栈信息。</p>
+<p>下面放几个LLDB相关链接</p>
+<p><a href="http://www.starfelix.com/blog/2014/03/17/lldbdiao-shi-ming-ling-chu-tan/" target="_blank" rel="external">LLDB调试命令初探</a></p>
+<p><a href="http://objccn.io/issue-19-2/" target="_blank" rel="external">与调试器共舞 - LLDB 的华尔兹</a></p>
+</li>
+</ol>
+<h2 id="第三方崩溃收集平台">第三方崩溃收集平台</h2><p>目前市面上的第三方崩溃的平台</p>
+<ol>
+<li><p><a href="https://try.crashlytics.com/" target="_blank" rel="external">Crashlytics</a> （国外的著名bug统计平台，成立于2011年，2013年被Twitter收购了，但是国内访问比较慢）</p>
+<p>  关于Crashlytics的更详细文章请看<a href="http://www.infoq.com/cn/articles/crashlytics-crash-statistics-tools" target="_blank" rel="external">这里</a></p>
+</li>
+<li><p><a href="http://bugly.qq.com/" target="_blank" rel="external">Bugly</a>    (腾讯的bug收集平台，很多腾讯产品都在用。支持cocoapods，手工集成两种集成方式。支持上传符号表文件，可每天向邮箱发送崩溃率的日报,有运营数据统计。)</p>
+</li>
+<li><p><a href="http://www.umeng.com/" target="_blank" rel="external">友盟统计</a>        (成立于2010年，专注移动开发者服务平台，移动应用统计分析，社会化分享做的很不错， 但是错误统计分析这一项相对薄弱，有些崩溃问题，无法定位到具体的崩溃地址)</p>
+</li>
+<li><p><a href="https://bugtags.com/" target="_blank" rel="external">Bugtags</a>    (比较推荐，我们目前项目在用，Bugtags是国内首款为改善移动产品质量而专门打造的测试平台产品。可以手动或者自动上传符号表，能定位到具体的崩溃地址，有崩溃以及反馈支持实时邮件通知，自动收集分析崩溃信息，崩溃时会自动截图当前页面上传到云端，支持摇一摇反馈，方便测试跟产品进行bug或者界面反馈)</p>
+<p> 相关文章介绍–  <a href="https://mp.weixin.qq.com/s?__biz=MjM5NTIyNTUyMQ==&amp;mid=449429420&amp;idx=1&amp;sn=837ececbfebf1551c2407adf4658be1e&amp;scene=1&amp;srcid=0127QO00srqp5PcMYcgCDqdj&amp;key=710a5d99946419d9673d019b0d6cf27fb47f333c17185cbc43680177d4312a9ae366e57c6db9b3e86bc022c4b8439377&amp;ascene=0&amp;uin=NDAyMTAyNQ%3D%3D&amp;devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.11.2+build&amp;version=11020201&amp;pass_ticket=tcl79y1Rm2vdpPEQqq8LFs6ZZCvKonEdoIMlCVUvS3A%3D" target="_blank" rel="external">Bugtags：移动时代首选 Bug 管理系统</a></p>
+</li>
+</ol>
+<h3 id="结束语">结束语</h3><pre><code>分享此文的目的，为了少让我们程序开发者少受Bug的摧残，因为我们每天加班确实挺累的，还提心吊胆的担心线上某个崩溃问题引起大的影响。所以希望我们开发者轻松工作，快乐生活，早日摆脱bug烦恼。
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/16/XcodeHotkey/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Xcode效率工具分享———(快捷键篇)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Xcode-debugger" data-title="iOS崩溃处理以及常用调试技巧" data-url="http://iyhjiang.com/2016/01/27/Xcode-debugger/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Yinghui Jiang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<span id="busuanzi_container_site_pv">
+    您是本站第<span id="busuanzi_value_site_pv"></span>位访客
+</span>
+
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
