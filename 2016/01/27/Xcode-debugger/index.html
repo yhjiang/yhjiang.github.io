@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e4z6fjjdj20m80duwhb.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e51l4xolj20wx0fzjwo.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/7b7b8d67gw1f0e52mdpwgj209e04i0si.jpg">
-<meta property="og:updated_time" content="2016-01-27T09:30:06.000Z">
+<meta property="og:updated_time" content="2016-01-27T09:31:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS崩溃处理以及常用调试技巧">
 <meta name="twitter:description" content="我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。
@@ -243,7 +243,7 @@ var _hmt = _hmt || [];
 </ul>
 <a id="more"></a>
 <h2 id="常见崩溃">常见崩溃</h2><ol>
-<li><p><strong> unrecognized selector sent to instance 0x**</strong>。</p>
+<li><p><code>unrecognized selector sent to instance 0x****</code>。</p>
 <p>  原因:这种情况很简单，给一个对象发送了一条它不认识的消息。比如说你的.h中声明了某一个方法，但是.m中却没有实现，而且你没有对异常消息处理（消息转发）就会造成这种现象。</p>
 <p> 解决办法：首先排查自己的某一些方法是否实现，其次看一下哪些对象接收了它不该接收的消息。</p>
 </li>
@@ -251,15 +251,15 @@ var _hmt = _hmt || [];
 <p> 原因： 数据越界，无需多说，这也是我们经常遇到的问题，尤其取服务端返回某个数组的值，没有对数组做判断导致。</p>
 <p> 解决办法: 根据定位查看是代码中哪个类中数组取值有越界。 或者通过iOS swizzle方法，对objectAtIndex或者objectForKey进行一层安全过滤。</p>
 </li>
-<li><p><code>[NSNull length] or [xxx length] unrecognized selector sent to * or [__NSCFNumber isEqualToString:]: unrecognized selector sent to instance 0x7a88df0</code></p>
+<li><p><code>[NSNull length] or [xxx length] unrecognized selector sent to *** or [__NSCFNumber isEqualToString:]: unrecognized selector sent to instance 0x7a88df0**</code></p>
 <p> 原因: 这个异常以可以归类为第一种，也是给某一个对象发送了不识别的消息。常见原因有：给UILabel对象设置了text，此时的text内容为空字符串null，然后你在取text的length的时候就会抛出异常，或者对一个string取length，但是这个string其实是个NSNumber类型的。</p>
 <p> 解决办法：对代码中进行取值的方法进行安全判断。</p>
 </li>
-<li><p><strong> EXC_BAD_ACCESS </strong></p>
+<li><p><code>EXC_BAD_ACCESS</code></p>
 <p> 原因：这种大多因为对象提前释放，访问了野指针导致的。</p>
 <p> 解决办法： 排查所有声明为weak对象的使用，是否在没有持有的情况下再次访问了该对象（该对象已经被释放），第二在MRC情况下，排查一下所以已经release的对象（声明一点，MRC中全局变量最好在dealloc方法中进行释放），第三排查一下所有block，是否block被正常赋值等。</p>
 </li>
-<li><p><strong> main函数崩溃 </strong></p>
+<li><p><code>main函数崩溃</code></p>
 <p>原因：这种情况比较难找，有可能是程序被系统kill掉了，也有可能是代码内线程访问出错等等原因。</p>
 <p>解决办法：添加全局(Exception Breakpoints)异常断点，开启NSZombieEnabled（僵尸模式），这样大部分崩溃都会定位到具体的代码行中。</p>
 </li>
