@@ -5,22 +5,16 @@
   
   <title>Effective Objective-C 2.0 读书笔记 | Edison Jiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
-
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
+  <meta name="description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective Objective-C 2.0 读书笔记">
 <meta property="og:url" content="http://iyhjiang.com/2016/03/01/Effective-Objective-C-2-0-Notes/index.html">
 <meta property="og:site_name" content="Edison Jiang">
-<meta property="og:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
-
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
-<meta property="og:updated_time" content="2016-03-02T09:28:20.000Z">
+<meta property="og:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。">
+<meta property="og:updated_time" content="2016-03-02T09:34:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Objective-C 2.0 读书笔记">
-<meta name="twitter:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
-
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
+<meta name="twitter:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。">
   
     <link rel="alternative" href="/atom.xml" title="Edison Jiang" type="application/atom+xml">
   
@@ -219,10 +213,11 @@ var _hmt = _hmt || [];
         <blockquote>
 <p>写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。</p>
 </blockquote>
-<h4 id="目标读者">目标读者</h4><pre><code>本书面向哪些有志于深入研究Objective-<span class="keyword">C</span>的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-<span class="keyword">C</span>程序员，但是会Java或<span class="keyword">C</span>++这样面向对象编程的语言，那么仍可阅读此书。在这种情况下，应该先了解Objective-<span class="keyword">C</span>的语法。
-</code></pre><h4 id="内容简介">内容简介</h4><pre><code>《Effective Objective-C <span class="number">2.0</span>：编写高质量iOS与OS x代码的<span class="number">52</span>个有效方法》是世界级c++开发大师scott meyers亲自担当顾问编辑的“effective software development series”系列丛书中的新作，amazon全五星评价。从语法、接口与api设计、内存管理、框架等<span class="number">7</span>大方面总结和探讨了objective-c编程中<span class="number">52</span>个鲜为人知和容易被忽视的特性与陷阱。书中包含大量实用范例代码，为编写易于理解、便于维护、易于扩展和高效的objective-c应用提供了解决方案。
-</code></pre><h4 id="作者简介">作者简介</h4><pre><code>Matt Galloway，资深软件开发工程师，精通移动应用程序的开发与设计，毕业于英国剑桥大学，咨询公司Swipe <span class="keyword">Stack</span> Ltd.的创始人。经常在<span class="keyword">Stack</span> <span class="keyword">Overflow</span>网站（stackoverflow.com）上回答与Objective-<span class="keyword">C</span>、iOS和Mac编程相关的问题，经验非常丰富。
-</code></pre><h4 id="主要内容">主要内容</h4><p>总共分为7章，共52条方法，每条都是一小块易于理解的文字。(章节可以不按照顺序进行阅读，书中的知识块都是独立的，可以直接跳到自己感兴趣或者与工作相关的章节来看)</p>
+<a id="more"></a>
+<h4 id="目标读者">目标读者</h4><p>本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Java或C++这样面向对象编程的语言，那么仍可阅读此书。在这种情况下，应该先了解Objective-C的语法。</p>
+<h4 id="内容简介">内容简介</h4><p>《Effective Objective-C 2.0：编写高质量iOS与OS x代码的52个有效方法》是世界级c++开发大师scott meyers亲自担当顾问编辑的“effective software development series”系列丛书中的新作，amazon全五星评价。从语法、接口与api设计、内存管理、框架等7大方面总结和探讨了objective-c编程中52个鲜为人知和容易被忽视的特性与陷阱。书中包含大量实用范例代码，为编写易于理解、便于维护、易于扩展和高效的objective-c应用提供了解决方案。</p>
+<h4 id="作者简介">作者简介</h4><p>Matt Galloway，资深软件开发工程师，精通移动应用程序的开发与设计，毕业于英国剑桥大学，咨询公司Swipe Stack Ltd.的创始人。经常在Stack Overflow网站（stackoverflow.com）上回答与Objective-C、iOS和Mac编程相关的问题，经验非常丰富。</p>
+<h4 id="主要内容">主要内容</h4><p>总共分为7章，共52条方法，每条都是一小块易于理解的文字。(章节可以不按照顺序进行阅读，书中的知识块都是独立的，可以直接跳到自己感兴趣或者与工作相关的章节来看)</p>
 <ul>
 <li><p>熟悉Objective-C (Accustoming Yourself to Objective-C)</p>
 </li>
