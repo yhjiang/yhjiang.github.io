@@ -3,51 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我收集的一些优秀iOS文章 | Edison Jiang</title>
+  <title>Effective Objective-C 2.0 读书笔记 | Edison Jiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介
-下面是我看过的一些觉得不错的文章，拿出来跟大家分享一下。 按照模块划分的。 主要有以下几个模块
+  <meta name="description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
 
-Objective-C编码风格
-效率提高
-项目优化
-开发工具
-调试技巧
-项目架构
-开源项目
-面试相关
-Git相关">
+目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我收集的一些优秀iOS文章">
-<meta property="og:url" content="http://iyhjiang.com/2015/08/25/iOSExcellentArticles/index.html">
+<meta property="og:title" content="Effective Objective-C 2.0 读书笔记">
+<meta property="og:url" content="http://iyhjiang.com/2016/03/01/Effective-Objective-C-2-0-Notes/index.html">
 <meta property="og:site_name" content="Edison Jiang">
-<meta property="og:description" content="简介
-下面是我看过的一些觉得不错的文章，拿出来跟大家分享一下。 按照模块划分的。 主要有以下几个模块
+<meta property="og:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
 
-Objective-C编码风格
-效率提高
-项目优化
-开发工具
-调试技巧
-项目架构
-开源项目
-面试相关
-Git相关">
-<meta property="og:updated_time" content="2015-11-10T09:57:02.000Z">
+目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
+<meta property="og:updated_time" content="2016-03-02T09:28:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我收集的一些优秀iOS文章">
-<meta name="twitter:description" content="简介
-下面是我看过的一些觉得不错的文章，拿出来跟大家分享一下。 按照模块划分的。 主要有以下几个模块
+<meta name="twitter:title" content="Effective Objective-C 2.0 读书笔记">
+<meta name="twitter:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
 
-Objective-C编码风格
-效率提高
-项目优化
-开发工具
-调试技巧
-项目架构
-开源项目
-面试相关
-Git相关">
+目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
   
     <link rel="alternative" href="/atom.xml" title="Edison Jiang" type="application/atom+xml">
   
@@ -206,11 +179,11 @@ var _hmt = _hmt || [];
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-iOSExcellentArticles" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Effective-Objective-C-2-0-Notes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/25/iOSExcellentArticles/" class="article-date">
-  	<time datetime="2015-08-25T09:51:34.000Z" itemprop="datePublished">8月 25 2015</time>
+      <a href="/2016/03/01/Effective-Objective-C-2-0-Notes/" class="article-date">
+  	<time datetime="2016-03-01T08:30:58.000Z" itemprop="datePublished">3月 1 2016</time>
 </a>
     </div>
   
@@ -223,7 +196,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      我收集的一些优秀iOS文章
+      Effective Objective-C 2.0 读书笔记
     </h1>
   
 
@@ -231,6 +204,10 @@ var _hmt = _hmt || [];
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -239,88 +216,30 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介">简介</h3><blockquote>
-<p>下面是我看过的一些觉得不错的文章，拿出来跟大家分享一下。 按照模块划分的。<br> 主要有以下几个模块</p>
-<ul>
-<li><strong>Objective-C编码风格</strong></li>
-<li><strong>效率提高</strong></li>
-<li><strong>项目优化</strong></li>
-<li><strong>开发工具</strong></li>
-<li><strong>调试技巧</strong></li>
-<li><strong>项目架构</strong></li>
-<li><strong>开源项目</strong></li>
-<li><strong>面试相关</strong></li>
-<li><strong>Git相关</strong></li>
-</ul>
+        <blockquote>
+<p>写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="正文">正文</h3><h4 id="一、Objective-C编码风格">一、Objective-C编码风格</h4><ul>
-<li><a href="https://github.com/oa414/objc-zen-book-cn" target="_blank" rel="external">禅与Objective-C编程艺术</a></li>
-<li><a href="https://github.com/raywenderlich/objective-c-style-guide" target="_blank" rel="external">Objective-C Style Guide</a></li>
-</ul>
-<h4 id="二、效率提高">二、效率提高</h4><ul>
-<li><p><a href="http://yyny.me/ios/%E6%8F%90%E9%AB%98iOS%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E5%B7%A5%E5%85%B7/" target="_blank" rel="external">提高iOS开发效率的方法和工具</a></p>
+<h4 id="目标读者">目标读者</h4><pre><code>本书面向哪些有志于深入研究Objective-<span class="keyword">C</span>的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-<span class="keyword">C</span>程序员，但是会Java或<span class="keyword">C</span>++这样面向对象编程的语言，那么仍可阅读此书。在这种情况下，应该先了解Objective-<span class="keyword">C</span>的语法。
+</code></pre><h4 id="内容简介">内容简介</h4><pre><code>《Effective Objective-C <span class="number">2.0</span>：编写高质量iOS与OS x代码的<span class="number">52</span>个有效方法》是世界级c++开发大师scott meyers亲自担当顾问编辑的“effective software development series”系列丛书中的新作，amazon全五星评价。从语法、接口与api设计、内存管理、框架等<span class="number">7</span>大方面总结和探讨了objective-c编程中<span class="number">52</span>个鲜为人知和容易被忽视的特性与陷阱。书中包含大量实用范例代码，为编写易于理解、便于维护、易于扩展和高效的objective-c应用提供了解决方案。
+</code></pre><h4 id="作者简介">作者简介</h4><pre><code>Matt Galloway，资深软件开发工程师，精通移动应用程序的开发与设计，毕业于英国剑桥大学，咨询公司Swipe <span class="keyword">Stack</span> Ltd.的创始人。经常在<span class="keyword">Stack</span> <span class="keyword">Overflow</span>网站（stackoverflow.com）上回答与Objective-<span class="keyword">C</span>、iOS和Mac编程相关的问题，经验非常丰富。
+</code></pre><h4 id="主要内容">主要内容</h4><p>总共分为7章，共52条方法，每条都是一小块易于理解的文字。(章节可以不按照顺序进行阅读，书中的知识块都是独立的，可以直接跳到自己感兴趣或者与工作相关的章节来看)</p>
+<ul>
+<li><p>熟悉Objective-C (Accustoming Yourself to Objective-C)</p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/50b63a221f09" target="_blank" rel="external">iOS开发的一些奇巧淫技</a></p>
+<li><p>对象、消息、运行时 (Objects, Messaging, and the Runtime)</p>
 </li>
-<li><p><a href="http://adad184.com/2014/09/28/use-masonry-to-quick-solve-autolayout/" target="_blank" rel="external">Masonry介绍与使用实践(快速上手Autolayout)</a></p>
+<li><p>接口与API设计 (Interface and API Design)</p>
 </li>
-<li><p><a href="http://www.cocoachina.com/ios/20151110/14102.html" target="_blank" rel="external">17个提升iOS开发效率的必用工具</a>        </p>
+<li><p>协议与分类 (Protocols and Categories)</p>
 </li>
-</ul>
-<h4 id="三、项目优化">三、项目优化</h4><ul>
-<li><p><a href="http://blog.sunnyxx.com/2015/05/17/cell-height-calculation/" target="_blank" rel="external">优化UITableViewCell高度计算的那些事</a></p>
+<li><p>内存管理 (Memory Management)</p>
 </li>
-<li><p><a href="http://blog.jobbole.com/37984/" target="_blank" rel="external">iOS应用性能调优的25个建议和技巧</a></p>
+<li><p>块与大中枢派发 (Block and Grand Central Dispatch)</p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/9e1f0b44935c" target="_blank" rel="external">iOS性能优化</a></p>
+<li><p>系统框架 （The system Frameworks）</p>
 </li>
 </ul>
-<h4 id="四、开发工具">四、开发工具</h4><ul>
-<li><p><a href="http://www.devtang.com/blog/2013/07/24/use-crashlytics/" target="_blank" rel="external">使用Crashlytics来保存应用崩溃信息</a></p>
-</li>
-<li><p><a href="http://www.devtang.com/blog/2013/12/11/network-tool-charles-intr/" target="_blank" rel="external">iOS开发工具-网络封包分析工具Charles</a></p>
-</li>
-<li><p><a href="http://www.devtang.com/blog/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">用CocoaPods做iOS程序的依赖管理</a></p>
-</li>
-<li><p><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="external">使用Cocoapods创建私有podspec</a> </p>
-</li>
-</ul>
-<h4 id="五、调试技巧">五、调试技巧</h4><ul>
-<li><p><a href="http://www.cnblogs.com/Leo_wl/p/4423922.html" target="_blank" rel="external">iOS各种调试技巧豪华套餐</a></p>
-</li>
-<li><p><a href="http://www.tairan.com/archives/1006/" target="_blank" rel="external">当程序崩溃的时候怎么办 part-1</a></p>
-</li>
-<li><p><a href="http://www.tairan.com/archives/1143/" target="_blank" rel="external">当程序崩溃的时候怎么办 part-2</a>    </p>
-</li>
-</ul>
-<h4 id="六、项目架构">六、项目架构</h4><ul>
-<li><p><a href="http://casatwy.com/iosying-yong-jia-gou-tan-kai-pian.html" target="_blank" rel="external">iOS应用架构谈 开篇</a></p>
-</li>
-<li><p><a href="http://www.smellbamboo.com/blog/2014/01/27/iosxiang-mu-jia-gou-tan-suo/" target="_blank" rel="external">iOS项目架构探索</a></p>
-</li>
-</ul>
-<h4 id="七、开源项目">七、开源项目</h4><ul>
-<li><p><a href="http://www.zhihu.com/question/22914651?sort=created" target="_blank" rel="external">GitHub 上都有哪些值得关注学习的 iOS 开源项目？</a></p>
-</li>
-<li><p><a href="http://foggry.com/blog/2014/04/25/githubyou-xiu-xiang-mu-ios/" target="_blank" rel="external">Github优秀开源项目大全-iOS</a></p>
-</li>
-</ul>
-<h4 id="八、面试相关">八、面试相关</h4><ul>
-<li><p><a href="http://blog.sunnyxx.com/2015/07/04/ios-interview/" target="_blank" rel="external">招聘一个靠谱的iOS</a></p>
-</li>
-<li><p><a href="https://github.com/ChenYilong/iOSInterviewQuestions" target="_blank" rel="external">&lt;招聘一个靠谱的iOS&gt; — 参考答案</a></p>
-</li>
-<li><p><a href="http://www.onevcat.com/2013/04/ios-interview/" target="_blank" rel="external">上级向的十个iOS面试问题</a></p>
-</li>
-</ul>
-<h4 id="九、Git相关">九、Git相关</h4><ul>
-<li><p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">Git教程</a></p>
-</li>
-<li><p><a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">Git - 简易指南</a></p>
-</li>
-</ul>
-<h5 id="Tip:_未完待续…_不定期更新中…_(Ps:如果有不错的文章，也可以在下面评论区推荐给我)">Tip:    未完待续… 不定期更新中… (Ps:如果有不错的文章，也可以在下面评论区推荐给我)</h5>
+
       
     </div>
     
@@ -329,18 +248,9 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/2016/01/16/Xcode-plug-in/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Xcode效率工具分享———(插件篇)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/19/MarkdownIntrodution/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Markdown语法十分钟入门</div>
+    <a href="/2016/01/27/Xcode-debugger/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS崩溃处理以及常用调试技巧</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -369,7 +279,7 @@ var _hmt = _hmt || [];
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="iOSExcellentArticles" data-title="我收集的一些优秀iOS文章" data-url="http://iyhjiang.com/2015/08/25/iOSExcellentArticles/"></div>
+	<div class="ds-thread" data-thread-key="Effective-Objective-C-2-0-Notes" data-title="Effective Objective-C 2.0 读书笔记" data-url="http://iyhjiang.com/2016/03/01/Effective-Objective-C-2-0-Notes/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
