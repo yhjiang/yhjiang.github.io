@@ -3,24 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Effective Objective-C 2.0 读书笔记 | Edison Jiang</title>
+  <title>Effective Objective-C 2.0第三章 (接口与API设计) | Edison Jiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
-
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
+  <meta name="description" content="###第15条: 用前缀避免命名空间冲突
+   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective Objective-C 2.0 读书笔记">
-<meta property="og:url" content="http://iyhjiang.com/2016/03/01/Effective-Objective-C-2-0-Notes/index.html">
+<meta property="og:title" content="Effective Objective-C 2.0第三章 (接口与API设计)">
+<meta property="og:url" content="http://iyhjiang.com/2016/03/03/Effectiove-Objective-C-2-0-Note-3/index.html">
 <meta property="og:site_name" content="Edison Jiang">
-<meta property="og:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
-
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
-<meta property="og:updated_time" content="2016-03-02T09:39:35.000Z">
+<meta property="og:description" content="###第15条: 用前缀避免命名空间冲突
+   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应">
+<meta property="og:updated_time" content="2016-03-03T08:24:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective Objective-C 2.0 读书笔记">
-<meta name="twitter:description" content="写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
-
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Ja">
+<meta name="twitter:title" content="Effective Objective-C 2.0第三章 (接口与API设计)">
+<meta name="twitter:description" content="###第15条: 用前缀避免命名空间冲突
+   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应">
   
     <link rel="alternative" href="/atom.xml" title="Edison Jiang" type="application/atom+xml">
   
@@ -179,11 +176,11 @@ var _hmt = _hmt || [];
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Effective-Objective-C-2-0-Notes" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Effectiove-Objective-C-2-0-Note-3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/01/Effective-Objective-C-2-0-Notes/" class="article-date">
-  	<time datetime="2016-03-01T08:30:58.000Z" itemprop="datePublished">3月 1 2016</time>
+      <a href="/2016/03/03/Effectiove-Objective-C-2-0-Note-3/" class="article-date">
+  	<time datetime="2016-03-03T03:59:24.000Z" itemprop="datePublished">3月 3 2016</time>
 </a>
     </div>
   
@@ -196,7 +193,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      Effective Objective-C 2.0 读书笔记
+      Effective Objective-C 2.0第三章 (接口与API设计)
     </h1>
   
 
@@ -216,29 +213,46 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。</p>
-</blockquote>
-<h3 id="目标读者">目标读者</h3><p>本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是会Java或C++这样面向对象编程的语言，那么仍可阅读此书。在这种情况下，应该先了解Objective-C的语法。</p>
-<a id="more"></a>
-<h3 id="内容简介">内容简介</h3><p>《Effective Objective-C 2.0：编写高质量iOS与OS x代码的52个有效方法》是世界级c++开发大师scott meyers亲自担当顾问编辑的“effective software development series”系列丛书中的新作，amazon全五星评价。从语法、接口与api设计、内存管理、框架等7大方面总结和探讨了objective-c编程中52个鲜为人知和容易被忽视的特性与陷阱。书中包含大量实用范例代码，为编写易于理解、便于维护、易于扩展和高效的objective-c应用提供了解决方案。</p>
-<h3 id="作者简介">作者简介</h3><p>Matt Galloway，资深软件开发工程师，精通移动应用程序的开发与设计，毕业于英国剑桥大学，咨询公司Swipe Stack Ltd.的创始人。经常在Stack Overflow网站（stackoverflow.com）上回答与Objective-C、iOS和Mac编程相关的问题，经验非常丰富。</p>
-<h3 id="主要内容">主要内容</h3><p>总共分为7章，共52条方法，每条都是一小块易于理解的文字。(章节可以不按照顺序进行阅读，书中的知识块都是独立的，可以直接跳到自己感兴趣或者与工作相关的章节来看)</p>
+        <p>###第15条: 用前缀避免命名空间冲突</p>
+<p>   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个字母的。举个栗子，开发者使用TW字母作为前缀，可能会跟系统自带的Twitter框架产生冲突。</p>
+<p>####要点</p>
 <ul>
-<li><p><strong>熟悉Objective-C (Accustoming Yourself to Objective-C)</strong></p>
-</li>
-<li><p><strong>对象、消息、运行时 (Objects, Messaging, and the Runtime)</strong></p>
-</li>
-<li><p><strong>接口与API设计 (Interface and API Design)</strong></p>
-</li>
-<li><p><strong>协议与分类 (Protocols and Categories)</strong></p>
-</li>
-<li><p><strong>内存管理 (Memory Management)</strong></p>
-</li>
-<li><p><strong>块与大中枢派发 (Block and Grand Central Dispatch)</strong></p>
-</li>
-<li><p><strong>系统框架 （The system Frameworks）</strong></p>
-</li>
+<li>选择与你的公司，应用程序或者两者都有关联的名称作为类名的前缀，并且在所有的代码中均使用这一前缀。(类名，分类，方法，都应加上相关前缀)</li>
+<li>如果是自己开发的程序库中用到了第三方库，应该为第三方库中的名称加上前缀防止冲突。</li>
+</ul>
+<hr>
+<p>###第16条: 提供”全能初始化方法”</p>
+<p>####要点</p>
+<ul>
+<li>在类中提供一个全能的初始化方法，并在文档中指明，其他的初始化方法都应该调用此方法。</li>
+<li>如果全能初始化方法与父类的不同，则需要在子类重写父类中对应方法。</li>
+</ul>
+<hr>
+<p>###第17条: 实现description方法</p>
+<p>实现自定义类的description方法</p>
+<p>代码</p>
+<p><code>- (NSString *)description
+{
+    return [NSString stringWithFormat:@&quot;&lt;%@: %p, \n %@  \n%@&gt;&quot;,[self class], self, _user_nickname,_user_avatar];
+}</code></p>
+<p>在新实现的description方法中，应该也像默认的实现那样，打印出类的名字和指针地址，因为这些内容也许会用到。</p>
+<p>如果自定义类中带有的属性较多，可以把待打印的信息放到字典中，然后将字典对象打印输出。</p>
+<p>示例</p>
+<p>`</p>
+<ul>
+<li>(NSString *)description<br>{<br>  return [NSString stringWithFormat:@”&lt;%@: %p, \n %@&gt;”,[self class], self, @{@”nickname”:_user_nickname, <pre><code>@<span class="string">"avtar"</span><span class="symbol">:_user_avatar</span>}];
+</code></pre>}<br>`</li>
+</ul>
+<p>Xcode有一款插件可以自动把属性转成description中打印，插件名为 <a href="https://github.com/adamontherun/xCodeGenerateDescriptionPlugin" target="_blank" rel="external">xCodeGenerateDescriptionPlugin</a>, 安装方法可通过Alcatraz安装或者跳转到该项目github主页把项目下载下来，xcode中build一下。</p>
+<p>使用方法</p>
+<ol>
+<li>In the .h file of your class, select all the properties you want included in your - (NSString *)description method.</li>
+<li>In the edit menu select Make Description</li>
+<li>Plugin will do all the work for you.</li>
+</ol>
+<h4 id="要点">要点</h4><ul>
+<li>实现description方法返回一个有意义的字符串，用于描述该实例。</li>
+<li>若想在调试中打印出更详尽的对象描述信息，则应实现debugDescription方法。</li>
 </ul>
 
       
@@ -249,18 +263,9 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/2016/03/02/Effective-Objective-C-2-0-Note-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Effective Objective-C 2.0第二章 (对象、消息、运行时)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/27/Xcode-debugger/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS崩溃处理以及常用调试技巧</div>
+    <a href="/2016/03/02/Effective-Objective-C-2-0-Note-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective Objective-C 2.0第二章 (对象、消息、运行时)</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -289,7 +294,7 @@ var _hmt = _hmt || [];
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Effective-Objective-C-2-0-Notes" data-title="Effective Objective-C 2.0 读书笔记" data-url="http://iyhjiang.com/2016/03/01/Effective-Objective-C-2-0-Notes/"></div>
+	<div class="ds-thread" data-thread-key="Effectiove-Objective-C-2-0-Note-3" data-title="Effective Objective-C 2.0第三章 (接口与API设计)" data-url="http://iyhjiang.com/2016/03/03/Effectiove-Objective-C-2-0-Note-3/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
