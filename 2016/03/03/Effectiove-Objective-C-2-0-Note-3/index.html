@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Edison Jiang">
 <meta property="og:description" content="###第15条: 用前缀避免命名空间冲突
    Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应">
-<meta property="og:updated_time" content="2016-03-03T08:24:50.000Z">
+<meta property="og:updated_time" content="2016-03-03T08:29:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Objective-C 2.0第三章 (接口与API设计)">
 <meta name="twitter:description" content="###第15条: 用前缀避免命名空间冲突
@@ -213,7 +213,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###第15条: 用前缀避免命名空间冲突</p>
+        <a id="more"></a>
+<p>###第15条: 用前缀避免命名空间冲突</p>
 <p>   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个字母的。举个栗子，开发者使用TW字母作为前缀，可能会跟系统自带的Twitter框架产生冲突。</p>
 <p>####要点</p>
 <ul>
