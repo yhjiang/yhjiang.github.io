@@ -201,23 +201,18 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <a id="more"></a>
-<p>###第15条: 用前缀避免命名空间冲突</p>
-<p>   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个字母的。举个栗子，开发者使用TW字母作为前缀，可能会跟系统自带的Twitter框架产生冲突。</p>
-<p>####要点</p>
-<ul>
+<h3 id="第15条:_用前缀避免命名空间冲突">第15条: 用前缀避免命名空间冲突</h3><p>   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个字母的。举个栗子，开发者使用TW字母作为前缀，可能会跟系统自带的Twitter框架产生冲突。</p>
+<h4 id="要点">要点</h4><ul>
 <li>选择与你的公司，应用程序或者两者都有关联的名称作为类名的前缀，并且在所有的代码中均使用这一前缀。(类名，分类，方法，都应加上相关前缀)</li>
 <li>如果是自己开发的程序库中用到了第三方库，应该为第三方库中的名称加上前缀防止冲突。</li>
 </ul>
 <hr>
-<p>###第16条: 提供”全能初始化方法”</p>
-<p>####要点</p>
-<ul>
+<h3 id="第16条:_提供”全能初始化方法”">第16条: 提供”全能初始化方法”</h3><h4 id="要点-1">要点</h4><ul>
 <li>在类中提供一个全能的初始化方法，并在文档中指明，其他的初始化方法都应该调用此方法。</li>
 <li>如果全能初始化方法与父类的不同，则需要在子类重写父类中对应方法。</li>
 </ul>
 <hr>
-<p>###第17条: 实现description方法</p>
-<p>实现自定义类的description方法</p>
+<h3 id="第17条:_实现description方法">第17条: 实现description方法</h3><p>实现自定义类的description方法</p>
 <p>代码</p>
 <p><code>- (NSString *)description
 {
@@ -228,8 +223,7 @@ var _hmt = _hmt || [];
 <p>示例</p>
 <p>`</p>
 <ul>
-<li>(NSString *)description<br>{<br>  return [NSString stringWithFormat:@”&lt;%@: %p, \n %@&gt;”,[self class], self, @{@”nickname”:_user_nickname, <pre><code>@<span class="string">"avtar"</span><span class="symbol">:_user_avatar</span>}];
-</code></pre>}<br>`</li>
+<li>(NSString *)description<br>{<br>  return [NSString stringWithFormat:@”&lt;%@: %p, \n %@&gt;”,[self class], self, @{@”nickname”:_user_nickname, @”avtar”:_user_avatar}];<br>}<br>`</li>
 </ul>
 <p>Xcode有一款插件可以自动把属性转成description中打印，插件名为 <a href="https://github.com/adamontherun/xCodeGenerateDescriptionPlugin" target="_blank" rel="external">xCodeGenerateDescriptionPlugin</a>, 安装方法可通过Alcatraz安装或者跳转到该项目github主页把项目下载下来，xcode中build一下。</p>
 <p>使用方法</p>
@@ -238,7 +232,7 @@ var _hmt = _hmt || [];
 <li>In the edit menu select Make Description</li>
 <li>Plugin will do all the work for you.</li>
 </ol>
-<h4 id="要点">要点</h4><ul>
+<h4 id="要点-2">要点</h4><ul>
 <li>实现description方法返回一个有意义的字符串，用于描述该实例。</li>
 <li>若想在调试中打印出更详尽的对象描述信息，则应实现debugDescription方法。</li>
 </ul>
