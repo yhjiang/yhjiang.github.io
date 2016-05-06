@@ -5,16 +5,16 @@
   
   <title>Effective Objective-C 2.0第三章 (接口与API设计) | Edison Jiang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第15条: 用前缀避免命名空间冲突   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个">
+  <meta name="description" content="接口与API设计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective Objective-C 2.0第三章 (接口与API设计)">
 <meta property="og:url" content="http://iyhjiang.com/2016/03/03/Effectiove-Objective-C-2-0-Note-3/index.html">
 <meta property="og:site_name" content="Edison Jiang">
-<meta property="og:description" content="第15条: 用前缀避免命名空间冲突   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个">
-<meta property="og:updated_time" content="2016-03-03T08:39:53.000Z">
+<meta property="og:description" content="接口与API设计">
+<meta property="og:updated_time" content="2016-05-06T09:42:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Objective-C 2.0第三章 (接口与API设计)">
-<meta name="twitter:description" content="第15条: 用前缀避免命名空间冲突   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个">
+<meta name="twitter:description" content="接口与API设计">
   
     <link rel="alternative" href="/atom.xml" title="Edison Jiang" type="application/atom+xml">
   
@@ -210,7 +210,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <h3 id="接口与API设计">接口与API设计</h3><a id="more"></a>
 <h3 id="第15条:_用前缀避免命名空间冲突">第15条: 用前缀避免命名空间冲突</h3><p>   Objective-C没有其他语言那种内置的命名空间（namespace）机制，所以起名的时候要设法避免潜在的命名冲突，要不然程序中会出现”重名符号错误”(duplicate symbol error)。解决方法：为所有的名称都加上适当前缀。 Apple宣称其保留使用所有“两字母前缀”(two-letter prefix)的权利，所以自己选用的前缀应该是三个字母的。举个栗子，开发者使用TW字母作为前缀，可能会跟系统自带的Twitter框架产生冲突。</p>
 <h4 id="要点">要点</h4><ul>
 <li>选择与你的公司，应用程序或者两者都有关联的名称作为类名的前缀，并且在所有的代码中均使用这一前缀。(类名，分类，方法，都应加上相关前缀)</li>
