@@ -192,8 +192,9 @@
             
         </h3>
         <div class="post-content-preview">
-            因为业务需要，需要把H264的流数据解码，然后拼装成CVPixelbufferRef。  解码部分用的是FFmpeg 3.0版本,使用avcodec_decode_video2方法解码出来的数据，保存在了AVFrame中，这里我们是把流解码成了YUV420P格式的。下面是具体的转换步骤
- 123456789101112131415161718192021222324252627282930......
+            因为业务需要，需要对H264的流数据进行解码，然后拼装成iOS特有的CVPixelbufferRef格式进行使用。  解码部分用的是FFmpeg 3.0版本,使用avcodec_decode_video2方法解码出来的数据，保存在了AVFrame中，这里我们是把流解码成了YUV420P格式的。下面是具体的转换步骤
+ 
+ 12345678910111213141516171819202122......
         </div>
     </a>
     <p class="post-meta">
@@ -221,27 +222,6 @@
     <p class="post-meta">
         Posted by Yinghui Jiang on
         2016-03-03
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/03/02/Effective-Objective-C-2-0-Note-2/">
-        <h2 class="post-title">
-            Effective Objective-C 2.0第二章 (对象、消息、运行时)
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Yinghui Jiang on
-        2016-03-02
     </p>
 
 </div>
@@ -472,16 +452,47 @@ Apple开发者账号分为三种：
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2015/08/13/TopTenMac-ProductivitySoftware/">
+        <h2 class="post-title">
+            Mac 十大效率软件工具整理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            简介
+Alfred
+PopClip
+Charles
+Paw
+MarkMan
+Reveal
+ImageOptim
+iStat Menus
+CleanMyMac
+Dash
+
+
+一、Alfred  （神一样的搜索）官网：http://www.alfredapp.com/
+个人以为小帽子是 Mac 平台上最为传奇的效率作品，誉为神兵利器毫不为过。其实这个领域当年的带头大哥是Quicksilver，一......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Yinghui Jiang on
+        2015-08-13
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
 
 <ul class="pager">
     
-    
-        <li class="next">
-            <a href="/page/2/">Older Posts &rarr;</a>
-        </li>
     
 </ul>
 
