@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -20,13 +20,13 @@
     <link rel="canonical" href="http://iyhjiang.com/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/hux-blog.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+    <link rel="stylesheet" href="/css/highlight.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -90,7 +90,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -104,7 +104,7 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -184,23 +184,25 @@
 
 <div class="post-preview">
 
-    <a href="/2017/10/16/how-to-use-cocoapods-1/">
+    <a href="/2018/10/22/how-to-filter-emoji/">
         <h2 class="post-title">
-            CocoaPods由浅入深---安装与使用（一）
+            iOS禁用 emoji 表情研究
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            介绍一、 CocoaPods是什么？
- CocoaPods是Swift和Objective-C的第三方类库管理工具。 它拥有超过38,000个类库并且有超过270万个app都在使用它。Cocopods可以帮你你优化你的项目。  — 来自官网介绍
+            iOS禁用 emoji 表情研究前言
+前段时间，产品提了一个需求，App 输入框禁止输入 emoji 表情，原因是服务端没有对 emoji 做兼容，当给服务端 post/get 发送 emoji 表情时候，会导致服务端报错。 
+emoji 介绍
+首先，我们看一下，emoji 是什么？
 
-二、CocoaPods好处  CocoaPods可以把项目中用到的第三方类库统一来管理，这大大减轻了我们手工地一个个导入第三方库，并且添加fram......
+emoji（英语：Emoji，日语：絵文字／えもじ emoji），是使用在网页和聊天中的形意符号，最初是日......
         </div>
     </a>
     <p class="post-meta">
         Posted by Yinghui Jiang on
-        2017-10-16
+        2018-10-22
     </p>
 
 </div>
@@ -216,9 +218,9 @@
             
         </h3>
         <div class="post-content-preview">
-            因为业务需要，需要对H264的流数据进行解码，然后拼装成iOS特有的CVPixelbufferRef格式进行使用。  解码部分用的是FFmpeg 3.0版本,使用avcodec_decode_video2方法解码出来的数据，保存在了AVFrame中，这里我们是把流解码成了YUV420P格式的。下面是具体的转换步骤
+              因为业务需要，需要对H264的流数据进行解码，然后拼装成iOS特有的CVPixelbufferRef格式进行使用。  解码部分用的是FFmpeg 3.0版本,使用avcodec_decode_video2方法解码出来的数据，保存在了AVFrame中，这里我们是把流解码成了YUV420P格式的。下面是具体的转换步骤
  
- 12345678910111213141516171819202122......
+ 123456789101112131415161718192021......
         </div>
     </a>
     <p class="post-meta">
@@ -261,9 +263,10 @@
             
         </h3>
         <div class="post-content-preview">
-            写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
+            
+写此文的目的主要记录下看这本书学习到的知识点，因为人类的记忆有个遗忘周期的，如果看过某篇技术类文章，但是实际开发中没有运用的地方，一般两周或者一个月后，就忘得差不多了，因此，本文旨在记录文章中重要的知识点，以便以后可以快速的查阅。
 
-目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但是......
+目标读者本书面向哪些有志于深入研究Objective-C的开发者，帮助其编写便于维护，执行迅速且不易出错的代码。如果你目前不少Objective-C程序员，但......
         </div>
     </a>
     <p class="post-meta">
@@ -284,7 +287,7 @@
             
         </h3>
         <div class="post-content-preview">
-            我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。
+             我们在开发过程中，经常会遇到一些崩溃问题。有时候应用正用的好好的，突然“砰”的一下，就退出到Home页面了，我们此刻内心肯定也是崩溃的，下面就给大家总结一下程序中常见的崩溃问题，以及我们如何去调试定位这种崩溃问题。
 目录
 
 常见崩溃
@@ -294,7 +297,7 @@
 
 常见崩溃
 unrecognized selector sent to instance 0x****。
-  原因:这种情况......
+  原因:这种情......
         </div>
     </a>
     <p class="post-meta">
@@ -315,7 +318,8 @@ unrecognized selector sent to instance 0x****。
             
         </h3>
         <div class="post-content-preview">
-            在Xcode 中有许多快捷键的设定可以使得你的编程工作更为高效，对于在代码文件中快速导航、定位Bug以及新增应用特性都是极有效的。在Xcode 所有快捷键中下列这些是首当其冲应当学习的。在你学习到如何使用之后，也许就再也离不开它们了。
+            
+在Xcode 中有许多快捷键的设定可以使得你的编程工作更为高效，对于在代码文件中快速导航、定位Bug以及新增应用特性都是极有效的。在Xcode 所有快捷键中下列这些是首当其冲应当学习的。在你学习到如何使用之后，也许就再也离不开它们了。
 
 
 Xcode导航快捷键
@@ -323,7 +327,7 @@ Xcode导航快捷键
 快速浏览代码、图片以及用户界面文件。
 
 显示/隐藏导航器面板:Command+0
-当你在对屏幕进行截......
+当你在对屏幕进行......
         </div>
     </a>
     <p class="post-meta">
@@ -344,7 +348,8 @@ Xcode导航快捷键
             
         </h3>
         <div class="post-content-preview">
-            古人有云：“工欲善其事，必先利其器”，在开发过程中有了锋利的”武器”，能起到事半功倍的效果，下面给大家推荐Xcode中的能大大提高工作效率的插件。
+            
+古人有云：“工欲善其事，必先利其器”，在开发过程中有了锋利的”武器”，能起到事半功倍的效果，下面给大家推荐Xcode中的能大大提高工作效率的插件。
 
 
 Alcatraz
@@ -357,7 +362,7 @@ XAlign
 ColorSense
 
 
-1、插件管理工具Alc......
+1、插件管理工具Al......
         </div>
     </a>
     <p class="post-meta">
@@ -513,7 +518,7 @@ Apple开发者账号分为三种：
                             
                         
                             
-                            <a href="/tags/#iOS" title="iOS" rel="5">iOS</a>
+                            <a href="/tags/#iOS" title="iOS" rel="6">iOS</a>
                             
                         
                             
@@ -532,7 +537,7 @@ Apple开发者账号分为三种：
                     <div class="short-about">
 
                         
-                            <img src="/img/home_avatar.jpg" />
+                            <img src="/img/home_avatar.jpg">
                         
 
                         
@@ -569,7 +574,7 @@ Apple开发者账号分为三种：
 
                             
                                 <li>
-                                    <a target="_blank"  href="https://github.com/yhjiang">
+                                    <a target="_blank" href="https://github.com/yhjiang">
                                         <span class="fa-stack fa-lg">
                                             <i class="fa fa-circle fa-stack-2x"></i>
                                             <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -627,7 +632,7 @@ Apple开发者账号分为三种：
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/yhjiang">
+                        <a target="_blank" href="https://github.com/yhjiang">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -640,17 +645,14 @@ Apple开发者账号分为三种：
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Edison Jiang 2017 
+                    Copyright &copy; Edison Jiang 2018 
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                     <span id="busuanzi_container_site_uv">
   view <span id="busuanzi_value_site_uv"></span> times
@@ -662,13 +664,13 @@ Apple开发者账号分为三种：
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js" type="text/javascript"></script>
+<script src="/js/hux-blog.min.js"></script>
 
 
 <!-- async load function -->

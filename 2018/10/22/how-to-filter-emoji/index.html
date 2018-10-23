@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          iOS禁用 emoji 表情研究 - Edison Jiang的博客 | Edison Jiang&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://iyhjiang.com/2018/10/22/how-to-filter-emoji/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Edison Jiang</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://iyhjiang.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                    </div>
+                    <h1>iOS禁用 emoji 表情研究</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Yinghui Jiang on
+                        2018-10-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="iOS禁用_emoji_表情研究">iOS禁用 emoji 表情研究</h1><h2 id="前言">前言</h2><hr>
+<p>前段时间，产品提了一个需求，App 输入框禁止输入 emoji 表情，原因是服务端没有对 emoji 做兼容，当给服务端 post/get 发送 emoji 表情时候，会导致服务端报错。 </p>
+<h2 id="emoji_介绍">emoji 介绍</h2><hr>
+<p>首先，我们看一下，emoji 是什么？</p>
+<blockquote>
+<p>emoji（英语：Emoji，日语：絵文字／えもじ emoji），是使用在网页和聊天中的形意符号，最初是日本在无线通信中所使用的视觉情感符号（图画文字）。表情意指面部表情，图标则是图形标志的意思，可用来代表多种表情，如笑脸表示笑、蛋糕表示食物等。在中国大陆，emoji通常叫做“小黄脸”，或者叫emoji。 —- 来自<a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E6%83%85%E5%9B%BE%E6%A0%87" target="_blank" rel="noopener">维基百科</a></p>
+</blockquote>
+<p>再来看一下 Unicode 关于 emoji 的介绍</p>
+<blockquote>
+<p>2010年10月发布的Unicode 6.0版首次收录emoji编码，其中582个emoji符号，66个已在其他位置编码，保留作相容用途的emoji符号。在Unicode 9.0 用22区块中共计1,126个字符表示emoji，其中1,085个是独立emoji字符，26个是用来显示旗帜的区域指示符号以及 12 个(#, * and 0-9)键帽符号。 —- 来自<a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E6%83%85%E5%9B%BE%E6%A0%87" target="_blank" rel="noopener">维基百科</a></p>
+</blockquote>
+<p>emoji 表情采用的是 Unicode 编码，目前 Unicode 10.0版本中，共为 emoji 表情分配了1144个码位。</p>
+<h2 id="为什么要禁用_emoji">为什么要禁用 emoji</h2><hr>
+<ol>
+<li>服务端使用的是 MySQL 数据库，编码格式为 UTF-8，对 emoji 不支持。</li>
+<li>服务端对改动进行了评估，认为风险过大，可能会引起线上数据的崩溃。我们 App 不属于 IM 类的 App，对 emoji 的要求不大。所以，经过协商评估，采用的方案是 App 端对 emoji 进行屏蔽输入。</li>
+</ol>
+<h2 id="解决方案">解决方案</h2><hr>
+<h3 id="1-_App_端对_emoji_进行过滤">1. App 端对 emoji 进行过滤</h3><p>网上搜的大多数方案，都是采用在 UITextField 或者 UITextView 的代理中，<br>加入对 emoji 的判断.<br>UITextField 的代理为 <code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string</code><br>UITextView 的代理为 <code>- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text</code></p>
+<p>对 emoji 进行判断的代码如下</p>
+<pre><code>- (BOOL)stringContainsEmoji:(NSString *)<span class="built_in">string</span>
+{
+    __block BOOL returnValue = NO;
+
+    [<span class="built_in">string</span> enumerateSubstringsInRange:NSMakeRange(<span class="number">0</span>, [<span class="built_in">string</span> length])
+                               options:NSStringEnumerationByComposedCharacterSequences
+                            usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                <span class="keyword">const</span> unichar hs = [substring characterAtIndex:<span class="number">0</span>];
+                                <span class="keyword">if</span> (<span class="number">0xd800</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0xdbff</span>) {
+                                    <span class="keyword">if</span> (substring.length &gt; <span class="number">1</span>) {
+                                        <span class="keyword">const</span> unichar ls = [substring characterAtIndex:<span class="number">1</span>];
+                                        <span class="keyword">const</span> <span class="keyword">int</span> uc = ((hs - <span class="number">0xd800</span>) * <span class="number">0x400</span>) + (ls - <span class="number">0xdc00</span>) + <span class="number">0x10000</span>;
+                                        <span class="keyword">if</span> (<span class="number">0x1d000</span> &lt;= uc &amp;&amp; uc &lt;= <span class="number">0x1f77f</span>) {
+                                            returnValue = YES;
+                                        }
+                                    }
+                                } <span class="keyword">else</span> <span class="keyword">if</span> (substring.length &gt; <span class="number">1</span>) {
+                                    <span class="keyword">const</span> unichar ls = [substring characterAtIndex:<span class="number">1</span>];
+                                    <span class="keyword">if</span> (ls == <span class="number">0x20e3</span>) {
+                                        returnValue = YES;
+                                    }
+                                } <span class="keyword">else</span> {
+                                    <span class="keyword">if</span> (<span class="number">0x2100</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x27ff</span>) {
+                                        returnValue = YES;
+                                    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x2B05</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x2b07</span>) {
+                                        returnValue = YES;
+                                    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x2934</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x2935</span>) {
+                                        returnValue = YES;
+                                    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x3297</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x3299</span>) {
+                                        returnValue = YES;
+                                    } <span class="keyword">else</span> <span class="keyword">if</span> (hs == <span class="number">0xa9</span> || hs == <span class="number">0xae</span> || hs == <span class="number">0x303d</span> || hs == <span class="number">0x3030</span> || hs == <span class="number">0x2b55</span> || hs == <span class="number">0x2b1c</span> || hs == <span class="number">0x2b1b</span> || hs == <span class="number">0x2b50</span>) {
+                                        returnValue = YES;
+                                    }
+                                }
+                            }];
+
+    <span class="keyword">return</span> returnValue;
+}
+</code></pre><p>主要的原理就是，把 <code>NSString</code> 转成 <code>Unicode</code>，然后根据编码范围来判断。</p>
+<p>但是，这种方法发现了一个问题，就是手机切换成九宫格输入的时候，发现也无法输入了。通过 <code>debug</code> 发现，当我们按九宫格键盘上的数字 2 键（ABC 字母所在的键）的时候，<br><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fwi08vv7x8j30vq0nodk2.jpg" alt="">控制台输出为➋，同理，我们又测试了3到9键，控制台输出为➌到➒, 表情“^-^” 键所对应的为符号 ☻ ，而这些符号在 <code>stringContainsEmoji:</code> 方法中刚好都被判为是 emoji，所以当输入框禁止输入 emoji 表情时，就会导致拼音也无法输入。</p>
+<p>解决的方案就是，在 <code>stringContainsEmoji:</code>方法中，过滤掉以上的符号（对应的 Unicode 编码为 <code>U+278b ~ U+2792 和 U+263b</code>），具体的代码如下</p>
+<pre><code><span class="keyword">if</span> (<span class="number">0x2100</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x27ff</span>) {
+     // 区分九宫格输入 U+<span class="number">278</span>b <span class="string">u'➋'</span> -  U+<span class="number">2792</span> <span class="string">u'➒'</span>
+     <span class="keyword">if</span> (<span class="number">0x278b</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x2792</span>) {
+         returnValue = NO;
+     // 九宫格键盘上 “^-^” 键所对应的为符号 ☻
+     } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x263b</span> == hs) {
+         returnValue = NO;
+     } <span class="keyword">else</span> {
+         returnValue = YES;
+     }
+ } 
+</code></pre><p>这样解决之后，好像还有个问题，因为我们采用的这个过滤掉 emoji 表情的方法，是根据现有的 emoji 的 Unicode 编码进行过滤的，假如有新增的 emoji 表情，依然没办法过滤。所以，我们要从根源上去屏蔽掉 emoji ，想了一个方案，就是判断键盘是否为 emoji 键盘，假如是的话，就返回 NO。 判断的代码是 <code>[[[textField textInputMode] primaryLanguage] isEqualToString:@&quot;emoji&quot;]</code></p>
+<p>至此，我们已经基本上解决了禁用 emoji 表情的问题。 完整的实现代码如下</p>
+<pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)<span class="built_in">string</span>
+{
+    <span class="comment">// 屏蔽掉emoji的输入</span>
+    <span class="keyword">if</span> ([textField isFirstResponder])
+    {
+        <span class="comment">// 判断 emoji 表情</span>
+        <span class="keyword">if</span> ([self stringContainsEmoji:<span class="built_in">string</span>]) {
+            <span class="keyword">return</span> NO;
+        }
+
+        <span class="keyword">if</span> ([[[textField textInputMode] primaryLanguage] isEqualToString:@<span class="string">"emoji"</span>])
+        {
+            <span class="keyword">return</span> NO;
+        }
+    }
+    <span class="keyword">return</span> YES;
+}
+
+- (BOOL)stringContainsEmoji:(NSString *)<span class="built_in">string</span>
+{
+    __block BOOL returnValue = NO;
+    [<span class="built_in">string</span> enumerateSubstringsInRange:NSMakeRange(<span class="number">0</span>, [<span class="built_in">string</span> length]) options:NSStringEnumerationByComposedCharacterSequences usingBlock:
+     ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+
+         <span class="keyword">const</span> unichar hs = [substring characterAtIndex:<span class="number">0</span>];
+         <span class="comment">// surrogate pair</span>
+         <span class="keyword">if</span> (<span class="number">0xd800</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0xdbff</span>) {
+             <span class="keyword">if</span> (substring.length &gt; <span class="number">1</span>) {
+                 <span class="keyword">const</span> unichar ls = [substring characterAtIndex:<span class="number">1</span>];
+                 <span class="keyword">const</span> <span class="keyword">int</span> uc = ((hs - <span class="number">0xd800</span>) * <span class="number">0x400</span>) + (ls - <span class="number">0xdc00</span>) + <span class="number">0x10000</span>;
+                 <span class="keyword">if</span> (<span class="number">0x1d000</span> &lt;= uc &amp;&amp; uc &lt;= <span class="number">0x1f77f</span>) {
+                     returnValue = YES;
+                 }
+             }
+         } <span class="keyword">else</span> <span class="keyword">if</span> (substring.length &gt; <span class="number">1</span>) {
+             <span class="keyword">const</span> unichar ls = [substring characterAtIndex:<span class="number">1</span>];
+             <span class="keyword">if</span> (ls == <span class="number">0x20e3</span>) {
+                 returnValue = YES;
+             }
+
+         } <span class="keyword">else</span> {
+             <span class="comment">// non surrogate</span>
+             <span class="keyword">if</span> (<span class="number">0x2100</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x27ff</span>) {
+                 <span class="comment">// 区分九宫格输入 U+278b u'➋' -  U+2792 u'➒'</span>
+                 <span class="keyword">if</span> (<span class="number">0x278b</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x2792</span>) {
+                     returnValue = NO;
+                     <span class="comment">// 九宫格键盘上 “^-^” 键所对应的为符号 ☻</span>
+                 } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x263b</span> == hs) {
+                     returnValue = NO;
+                 } <span class="keyword">else</span> {
+                     returnValue = YES;
+                 }
+             } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x2B05</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x2b07</span>) {
+                 returnValue = YES;
+             } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x2934</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x2935</span>) {
+                 returnValue = YES;
+             } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">0x3297</span> &lt;= hs &amp;&amp; hs &lt;= <span class="number">0x3299</span>) {
+                 returnValue = YES;
+             } <span class="keyword">else</span> <span class="keyword">if</span> (hs == <span class="number">0xa9</span> || hs == <span class="number">0xae</span> || hs == <span class="number">0x303d</span> || hs == <span class="number">0x3030</span> || hs == <span class="number">0x2b55</span> || hs == <span class="number">0x2b1c</span> || hs == <span class="number">0x2b1b</span> || hs == <span class="number">0x2b50</span>) {
+                 returnValue = YES;
+             }
+         }
+     }];
+
+    <span class="keyword">return</span> returnValue;
+}
+</code></pre><h3 id="2-_服务端改动">2. 服务端改动</h3><hr>
+<p>前面我们说了，产生这种问题的最根本原因就是，服务端的 <code>MySQL</code> 数据库采用的是 <code>utf-8</code> 的编码格式。 <code>utf8</code> 编码最大字符长度为 <code>3</code> 字节，如果遇到 <code>4</code> 字节的宽字符就会插入异常了，而 emoji 表情恰恰就是 <code>4</code> 个字节长度。</p>
+<p><code>MySQL</code>在5.5.3之后增加了 utf8mb4 的编码，mb4就是 most bytes 4 的意思，专门用来兼容 <code>4</code> 字节的 unicode。<br>参考文章： </p>
+<ol>
+<li><a href="%E4%BF%AE%E6%94%B9MySQL%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%BAutf8mb4">修改MySQL的字符集为utf8mb4</a> </li>
+<li><a href="https://segmentfault.com/a/1190000006851140" target="_blank" rel="noopener">MySQL 支持 emoji 图标存储</a></li>
+</ol>
+<h2 id="小结">小结</h2><hr>
+<p>我们这次讨论了关于 App 端如何屏蔽掉 emoji 表情输入的问题，但是上述的方案并不是完美的方案，等将来 emoji 表情库有更新时，我们过滤的代码也需要进行更新。<br>问题出来后，我们需要从根源上解决问题，通过现象看本质，这也是我们每个程序开发人员必备的特质。最优的解决方案其实是服务端对 emoji 表情做兼容处理，而不是从 App 端对输入做限制。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/30/avframe-conver-to-cvpixelbufferref/" data-toggle="tooltip" data-placement="top" title="AVFrame转CVPixelbufferRef">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://iyhjiang.com/2018/10/22/how-to-filter-emoji/";
+    var disqus_url = "http://iyhjiang.com/2018/10/22/how-to-filter-emoji/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/iyhjiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/iyhjiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/yhjiang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Edison Jiang 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                    <span id="busuanzi_container_site_uv">
+  view <span id="busuanzi_value_site_uv"></span> times
+</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://iyhjiang.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://iyhjiang.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
